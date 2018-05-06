@@ -1,0 +1,22 @@
+#define PROJECT_VERSION @PROJECT_VERSION@
+
+// BOOST
+// WIRINGPI
+// RPI
+
+#define STR_HELPER(x) #x
+#define STR(x) STR_HELPER(x)
+
+#define DEFAULT_PORT 42542
+
+#define CLIENT_DEFAULT_HOST "localhost"
+#define CLIENT_DEFAULT_PORT STR(DEFAULT_PORT)
+
+#define SERVER_DEFAULT_PORT DEFAULT_PORT
+#define SERVER_DEFAULT_LOG_FILENAME "433d_%N.log"
+#define SERVER_DEFAULT_CONF_FILENAME "433d.conf"
+
+// https://projects.drogon.net/raspberry-pi/wiringpi/pins/
+#define DEFAULT_TX_WIRINGPI_PIN 0
+#define DEFAULT_TX_PROTOCOL 1
+#define DEFAULT_TX_PULSE 180
