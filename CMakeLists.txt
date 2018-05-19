@@ -5,6 +5,8 @@ project(433
 set(CMAKE_CXX_STANDARD 11)
 include(ExternalProject)
 
+include(cmake/clang_static_analysis.cmake)
+
 
 # Boost
 
@@ -70,6 +72,7 @@ add_library(433lib
         src/common/message_queue.cpp
         )
 set_target_properties(433lib PROPERTIES LINKER_LANGUAGE CXX)
+add_clang_static_analysis(433lib)
 
 
 # client
@@ -77,6 +80,7 @@ set_target_properties(433lib PROPERTIES LINKER_LANGUAGE CXX)
 add_executable(433c
         src/client/433c.cpp)
 target_link_libraries(433c ${Boost_LIBRARIES})
+add_clang_static_analysis(433c)
 
 
 # server
@@ -95,6 +99,7 @@ endif()
 if(rcswitch_FOUND)
     target_link_libraries(433d rcswitch)
 endif()
+add_clang_static_analysis(433d)
 
 
 # tests
