@@ -10,7 +10,12 @@ include(cmake/clang_static_analysis.cmake)
 
 # Boost
 
-find_package(Boost 1.66.0 REQUIRED COMPONENTS
+include(cmake/boost.cmake)
+find_boost(
+        1.66.0
+        b2dfbd6c717be4a7bb2d88018eaccf75
+#)
+#find_package(Boost 1.66.0 REQUIRED COMPONENTS
         date_time
         log
         program_options
@@ -18,9 +23,9 @@ find_package(Boost 1.66.0 REQUIRED COMPONENTS
         serialization
         system
         thread
-        unit_test_framework
+#        unit_test_framework
         )
-include_directories(${Boost_INCLUDE_DIR})
+#include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
 if(Boost_FOUND)
     add_definitions(-DBOOST)
@@ -79,7 +84,8 @@ add_clang_static_analysis(433lib)
 
 add_executable(433c
         src/client/433c.cpp)
-target_link_libraries(433c ${Boost_LIBRARIES})
+target_link_boost(433c)
+#target_link_libraries(433c ${Boost_LIBRARIES})
 add_clang_static_analysis(433c)
 
 
@@ -92,7 +98,8 @@ add_executable(433d
         src/server/log.hpp
         src/server/log.cpp
         src/server/transmitter.cpp src/server/transmitter.hpp src/server/connection.cpp)
-target_link_libraries(433d ${Boost_LIBRARIES})
+target_link_boost(433d)
+#target_link_libraries(433d ${Boost_LIBRARIES})
 if(wiringPi_FOUND)
     target_link_libraries(433d wiringPi)
 endif()
